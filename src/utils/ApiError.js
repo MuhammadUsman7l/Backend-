@@ -1,5 +1,5 @@
 // API Custom Erros generator class
-class ApiError extends error {
+class ApiError extends Error {
   constructor(
     statuscode,
     message = "Something went wrong",
