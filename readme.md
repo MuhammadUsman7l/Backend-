@@ -4,3 +4,10 @@ My Backend Practice Section with
 -> Express.js
 -> MongoDB
 -> Mongoose
+-> Multer
+-> Cloudinary
+-> Mongoose-Aggregate-paginate-v2
+-> Cors
+-> Bcrypt
+-> Cookie-parser
+-> Jsonwebtoken
