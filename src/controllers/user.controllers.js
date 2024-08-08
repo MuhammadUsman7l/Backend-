@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.models.js";
 import { uploadCLoudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/apiresponse.js";
+import bcrypt from "bcrypt";
 
 const generateAccessandRefreshToken = async (user_ID) => {
   try {
@@ -46,10 +47,10 @@ const registerUser = asyncHandler(async (req, res) => {
   let coverImageLocalPath;
   if (
     req.files &&
-    Array.isArray(req.files.coverImageLocalPath) &&
-    req.files.coverImageLocalPath.length > 0
+    Array.isArray(req.files.coverImage) &&
+    req.files.coverImage.length > 0
   ) {
-    coverImageLocalPath = req.files.coverImageLocalPath[0].path;
+    coverImageLocalPath = req.files.coverImage[0].path;
   }
 
   if (!avatarLocalPath) {
@@ -89,7 +90,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
-  if (!username || !email) {
+  if (!username && !email) {
     throw new ApiError(400, "Username or Email is required");
   }
 
